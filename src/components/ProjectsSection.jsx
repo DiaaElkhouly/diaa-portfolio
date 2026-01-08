@@ -98,7 +98,7 @@ const ProjectsSection = () => {
       title: "Cadenza",
       description:
         "Product showcase pages designed for cosmetics brands, focusing on clean UI, brand identity, and responsive layouts. Built as part of a team-based university project.",
-      tags: ["D3.js", "Three.js", "TypeScript"],
+      tags: ["React", "Tailwind css", "React bits"],
       liveHref: "https://diaaelkhouly.github.io/cadenza/",
       codeHref: "https://github.com/DiaaElkhouly/cadenza",
     },
