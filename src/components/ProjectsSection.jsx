@@ -63,6 +63,14 @@ const ProjectCard = ({ project }) => {
 const ProjectsSection = () => {
   const projects = [
     {
+      title: "E-commerce Website Template",
+      description:
+        "modern and scalable E-commerce website template built with Next.js (App Router) and Tailwind CSS, designed to deliver a clean, premium shopping experience with smooth and professional animations.",
+      tags: ["Next.js", "Tailwind css", "Framer Motion"],
+      liveHref: "https://ecommerce-xi-ivory.vercel.app/",
+      codeHref: "https://github.com/DiaaElkhouly/ecommerce",
+    },
+    {
       title: "3D Product Configurator",
       description:
         "An interactive 3D landing page inspired by modern product showcases. Built to demonstrate 3D concepts applied to the web, smooth animations, and responsive design",

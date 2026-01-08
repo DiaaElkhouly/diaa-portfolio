@@ -131,7 +131,7 @@ const ContactSection = () => {
               </div>
             </div>
             <a
-              href="./public/resume.pdf" // path inside public folder
+              href="./resume.pdf" // path inside public folder
               download="Diaa-Resume.pdf"
               className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors"
             >
