@@ -6,10 +6,11 @@ import CodeXmlIcon from "../icons/code-xml-icon";
 // Skills Section
 const SkillsSection = () => {
   const skills = [
+    { name: "Next.js", level: 85, icon: <RocketIcon className="w-6 h-6" /> },
     { name: "React.js", level: 95, icon: <RocketIcon className="w-6 h-6" /> },
     {
       name: "JavaScript",
-      level: 95,
+      level: 90,
       icon: <JavascriptIcon className="w-6 h-6" />,
     },
     {

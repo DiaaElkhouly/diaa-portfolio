@@ -153,6 +153,9 @@ const HeroSection = ({ mousePosition }) => {
             interactions.
           </p>
           <div className="flex flex-wrap gap-2 sm:gap-4 justify-center mb-6 sm:mb-8">
+            <span className="px-3 py-1 sm:px-6 sm:py-2 bg-pink-600/30 backdrop-blur-sm rounded-full text-white border border-pink-500/50 text-sm sm:text-base">
+              Next.js
+            </span>
             <span className="px-3 py-1 sm:px-6 sm:py-2 bg-indigo-600/30 backdrop-blur-sm rounded-full text-white border border-indigo-500/50 text-sm sm:text-base">
               React.js
             </span>

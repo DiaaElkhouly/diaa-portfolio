@@ -63,6 +63,14 @@ const ProjectCard = ({ project }) => {
 const ProjectsSection = () => {
   const projects = [
     {
+      title: "E-Learning Platform",
+      description:
+        "A modern and responsive e-learning web platform focused on clean UI, smooth user experience, and performance. Built with a scalable component-based architecture and optimized for fast accessibility.",
+      tags: ["Next.js", "Tailwind css", "Motion"],
+      liveHref: "https://e-learning-flax-tau.vercel.app/",
+      codeHref: "https://github.com/DiaaElkhouly/e-learning",
+    },
+    {
       title: "E-commerce Website Template",
       description:
         "modern and scalable E-commerce website template built with Next.js (App Router) and Tailwind CSS, designed to deliver a clean, premium shopping experience with smooth and professional animations.",
