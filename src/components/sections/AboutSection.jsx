@@ -1,8 +1,11 @@
-import React from "react";
 import { Code, Palette, Zap, Heart } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext";
+import { aboutSkills } from "../../data/skills";
 
-// About Section - Professional Redesign
-const AboutSection = ({ darkMode }) => {
+// About Section
+const AboutSection = () => {
+  const { darkMode } = useTheme();
+
   const stats = [
     {
       icon: <Code className="w-5 h-5" />,
@@ -88,9 +91,8 @@ const AboutSection = ({ darkMode }) => {
             boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.15)",
           }}
         >
-          {/* Profile Image Placeholder - Optional */}
+          {/* Text Content */}
           <div className="flex flex-col md:flex-row gap-6 md:items-start">
-            {/* Text Content */}
             <div className="flex-1">
               <p
                 className="text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6"
@@ -128,13 +130,7 @@ const AboutSection = ({ darkMode }) => {
               </p>
 
               <div className="flex flex-wrap gap-2 sm:gap-3 mt-6">
-                {[
-                  "React.js",
-                  "Next.js",
-                  "Tailwind CSS",
-                  "Three.js",
-                  "TypeScript",
-                ].map((skill) => (
+                {aboutSkills.map((skill) => (
                   <span
                     key={skill}
                     className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all hover:scale-105"

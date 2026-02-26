@@ -1,9 +1,11 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Float, Sparkles, RoundedBox } from "@react-three/drei";
-import { ChevronDown } from "lucide-react";
 
-import ShinyText from "./ShinyText";
+import { useTheme } from "../../context/ThemeContext";
+import { techStack } from "../../data/skills";
+import { personalInfo } from "../../data/contact";
+import ShinyText from "../ShinyText";
 
 // Generate particles positions outside component
 const particlesCount = 800;
@@ -271,7 +273,9 @@ const LightModeScene = ({ mousePosition }) => {
 };
 
 // Hero Section
-const HeroSection = ({ mousePosition, darkMode }) => {
+const HeroSection = ({ mousePosition }) => {
+  const { darkMode } = useTheme();
+
   const bgGradient = darkMode
     ? "linear-gradient(135deg, #0a0a0f 0%, #1e1b4b 50%, #0f172a 100%)"
     : "linear-gradient(135deg, #f8fafc 0%, #e0e7ff 50%, #f0f9ff 100%)";
@@ -313,15 +317,6 @@ const HeroSection = ({ mousePosition, darkMode }) => {
     },
   ];
 
-  const techStack = [
-    "Next.js",
-    "React.js",
-    "JavaScript",
-    "Tailwind CSS",
-    "Three.js",
-    "shadcn/ui",
-  ];
-
   return (
     <section
       id="home"
@@ -343,8 +338,8 @@ const HeroSection = ({ mousePosition, darkMode }) => {
       <div className="relative z-10 text-center px-4 pt-5  sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="animate-fade-in">
           <ShinyText
-            text={"Diaa Elkhouly"}
-            className="h-full text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6"
+            text={personalInfo.name}
+            className="min-h-full pt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold pb-4 sm:mb-6"
             speed={2}
             delay={0.5}
             color={darkMode ? "#cccccc" : "#1e293b"}
@@ -362,7 +357,7 @@ const HeroSection = ({ mousePosition, darkMode }) => {
             className="text-lg sm:text-xl md:text-2xl mb-3 sm:mb-4 font-medium"
             style={{ color: subtitleColor }}
           >
-            Front End Developer
+            {personalInfo.title}
           </p>
 
           <p
@@ -426,17 +421,28 @@ const HeroSection = ({ mousePosition, darkMode }) => {
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
           <div
-            className="w-10 h-16 rounded-full flex items-start justify-center p-2"
+            className="w-8 h-12 rounded-full flex items-start justify-center pt-2"
             style={{
               background: darkMode
-                ? "rgba(255, 255, 255, 0.1)"
-                : "rgba(79, 70, 229, 0.1)",
-              border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.2)" : "rgba(79, 70, 229, 0.2)"}`,
+                ? "rgba(255, 255, 255, 0.08)"
+                : "rgba(79, 70, 229, 0.08)",
+              border: `1.5px solid ${darkMode ? "rgba(255, 255, 255, 0.15)" : "rgba(79, 70, 229, 0.15)"}`,
+              backdropFilter: "blur(4px)",
+              boxShadow: darkMode
+                ? "0 4px 12px rgba(0, 0, 0, 0.15)"
+                : "0 4px 12px rgba(79, 70, 229, 0.08)",
             }}
           >
             <div
-              className="w-1.5 h-3 rounded-full animate-pulse"
-              style={{ background: darkMode ? "#a5b4fc" : "#4f46e5" }}
+              className="w-1 h-2 rounded-full animate-pulse"
+              style={{
+                background: darkMode
+                  ? "rgba(165, 180, 252, 0.9)"
+                  : "rgba(79, 70, 229, 0.9)",
+                boxShadow: darkMode
+                  ? "0 0 8px rgba(165, 180, 252, 0.4)"
+                  : "0 0 8px rgba(79, 70, 229, 0.4)",
+              }}
             />
           </div>
         </div>

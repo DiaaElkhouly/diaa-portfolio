@@ -1,9 +1,21 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Code, Sun, Moon } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext";
+import useActiveSection from "../../hooks/useActiveSection";
 
-const Navigation = ({ darkMode, setDarkMode, activeSection }) => {
+const navItems = [
+  { name: "Home", href: "#home" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "About", href: "#about" },
+  { name: "Contact", href: "#contact" },
+];
+
+const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { darkMode, toggleDarkMode } = useTheme();
+  const activeSection = useActiveSection();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,14 +24,6 @@ const Navigation = ({ darkMode, setDarkMode, activeSection }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
-  ];
 
   return (
     <nav
@@ -68,7 +72,7 @@ const Navigation = ({ darkMode, setDarkMode, activeSection }) => {
 
             {/* Creative Animated Theme Toggle */}
             <button
-              onClick={() => setDarkMode(!darkMode)}
+              onClick={toggleDarkMode}
               className="relative w-14 h-8 rounded-full transition-all duration-300 hover:scale-110"
               style={{
                 background: darkMode
@@ -130,7 +134,7 @@ const Navigation = ({ darkMode, setDarkMode, activeSection }) => {
           <div className="flex items-center gap-2 sm:gap-3 md:hidden">
             {/* Mobile Theme Toggle Button */}
             <button
-              onClick={() => setDarkMode(!darkMode)}
+              onClick={toggleDarkMode}
               className="p-2.5 sm:p-2 rounded-xl transition-all duration-300 hover:scale-110"
               style={{
                 background: darkMode
@@ -208,4 +212,4 @@ const Navigation = ({ darkMode, setDarkMode, activeSection }) => {
   );
 };
 
-export default Navigation;
+export default Header;

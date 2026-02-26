@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, ExternalLink, Github } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext";
+import { projects } from "../../data/projects";
 
-// Project Card Component - Redesigned for Mobile
+// Project Card Component
 const ProjectCard = ({ project, darkMode }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -18,7 +20,7 @@ const ProjectCard = ({ project, darkMode }) => {
           : "0 4px 20px rgba(0, 0, 0, 0.08)",
       }}
     >
-      {/* Project Image Area - More vibrant */}
+      {/* Project Image Area */}
       <div
         className="relative h-28 sm:h-32 md:h-40 flex items-center justify-center overflow-hidden"
         style={{
@@ -32,7 +34,7 @@ const ProjectCard = ({ project, darkMode }) => {
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
 
-        {/* Floating Action Buttons - Appear on Hover (Desktop) or Always (Mobile) */}
+        {/* Floating Action Buttons */}
         <div className="absolute bottom-2 left-2 right-2 flex justify-center gap-2 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
           <a
             href={project.liveHref}
@@ -57,7 +59,7 @@ const ProjectCard = ({ project, darkMode }) => {
         </div>
       </div>
 
-      {/* Project Content - Compact for Mobile */}
+      {/* Project Content */}
       <div className="p-3 sm:p-4">
         <h3
           className="text-sm sm:text-base md:text-lg font-bold mb-1 sm:mb-1.5 truncate"
@@ -72,7 +74,7 @@ const ProjectCard = ({ project, darkMode }) => {
           {project.description}
         </p>
 
-        {/* Tags - Smaller and more compact */}
+        {/* Tags */}
         <div className="flex flex-wrap gap-1 mb-2 sm:mb-3">
           {project.tags.slice(0, 3).map((tag) => (
             <span
@@ -89,105 +91,14 @@ const ProjectCard = ({ project, darkMode }) => {
             </span>
           ))}
         </div>
-
-        {/* Mobile Action Buttons - Sticky at Bottom */}
-        {/* <div className="flex gap-2 mt-2 md:hidden">
-          <a
-            href={project.liveHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-[11px] font-semibold transition-all active:scale-95"
-            style={{
-              background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-              color: "#ffffff",
-              boxShadow: "0 2px 8px rgba(99, 102, 241, 0.3)",
-            }}
-          >
-            <ExternalLink className="w-3.5 h-3.5" />
-            Demo
-          </a>
-          <a
-            href={project.codeHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-[11px] font-semibold transition-all active:scale-95"
-            style={{
-              background: darkMode
-                ? "rgba(255, 255, 255, 0.08)"
-                : "rgba(0, 0, 0, 0.05)",
-              border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.1)"}`,
-              color: darkMode ? "#e2e8f0" : "#475569",
-            }}
-          >
-            <Github className="w-3.5 h-3.5" />
-            Code
-          </a>
-        </div> */}
       </div>
     </div>
   );
 };
 
 // Projects Section
-const ProjectsSection = ({ darkMode }) => {
-  const projects = [
-    {
-      title: "Full-Stack E-Commerce Platform",
-      description:
-        "Developed a production-ready full-stack e-commerce application for a pharmacy, featuring an admin dashboard for inventory and order management.",
-      tags: ["Next.js", "Tailwind","PWA"],
-      liveHref: "https://dr-mohamedawad-pharmacy.vercel.app/",
-      codeHref: "https://github.com/DiaaElkhouly/dr-mohamedawad-pharmacy",
-    },
-    {
-      title: "E-Learning Platform",
-      description:
-        "A modern and responsive e-learning web platform focused on clean UI, smooth user experience, and performance.",
-      tags: ["Next.js", "Tailwind", "Motion"],
-      liveHref: "https://e-learning-flax-tau.vercel.app/",
-      codeHref: "https://github.com/DiaaElkhouly/e-learning",
-    },
-    {
-      title: "E-commerce Template",
-      description:
-        "Modern and scalable E-commerce website template built with Next.js and Tailwind CSS for a premium shopping experience.",
-      tags: ["Next.js", "Tailwind", "Framer"],
-      liveHref: "https://ecommerce-xi-ivory.vercel.app/",
-      codeHref: "https://github.com/DiaaElkhouly/ecommerce",
-    },
-    {
-      title: "3D Product Configurator",
-      description:
-        "An interactive 3D landing page inspired by modern product showcases with smooth animations.",
-      tags: ["React.js", "Three.js", "GSAP"],
-      liveHref: "https://diaaelkhouly.github.io/3d-macbook/",
-      codeHref: "https://github.com/DiaaElkhouly/3d-macbook",
-    },
-    {
-      title: "Landing Page",
-      description:
-        "A front-end portfolio highlighting modern UI practices and performance-focused design.",
-      tags: ["React.js", "Tailwind", "MUI"],
-      liveHref: "https://diaaelkhouly.github.io/landing-page-demo/",
-      codeHref: "https://github.com/DiaaElkhouly/landing-page-demo",
-    },
-    {
-      title: "NEFER",
-      description:
-        "Product showcase pages designed for cosmetics brands with clean UI and responsive layouts.",
-      tags: ["React", "Tailwind"],
-      liveHref: "https://diaaelkhouly.github.io/NEFER/",
-      codeHref: "https://github.com/DiaaElkhouly/NEFER",
-    },
-    {
-      title: "Cadenza",
-      description:
-        "Product showcase pages for cosmetics brands focusing on brand identity and responsive design.",
-      tags: ["React", "Tailwind"],
-      liveHref: "https://diaaelkhouly.github.io/cadenza/",
-      codeHref: "https://github.com/DiaaElkhouly/cadenza",
-    },
-  ];
+const ProjectsSection = () => {
+  const { darkMode } = useTheme();
 
   return (
     <section
@@ -214,7 +125,7 @@ const ProjectsSection = ({ darkMode }) => {
           </p>
         </div>
 
-        {/* Projects Grid - 2 columns on mobile, 2 on tablet, 3 on desktop */}
+        {/* Projects Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} darkMode={darkMode} />

@@ -1,16 +1,9 @@
-import React from "react";
-import {
-  Code2,
-  Heart,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Github,
-  Mail,
-} from "lucide-react";
+import { Code2, Heart, Linkedin, Github, Mail } from "lucide-react";
+import { useTheme } from "../../context/ThemeContext";
+import { footerLinks, personalInfo } from "../../data/contact";
 
-// Footer - Professional Redesign
-const Footer = ({ darkMode }) => {
+const Footer = () => {
+  const { darkMode } = useTheme();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -29,14 +22,6 @@ const Footer = ({ darkMode }) => {
       href: "mailto:diaaelkhouly8@gmail.com",
       label: "Email",
     },
-  ];
-
-  const quickLinks = [
-    { label: "Home", href: "#home" },
-    { label: "Projects", href: "#projects" },
-    { label: "Skills", href: "#skills" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
   ];
 
   return (
@@ -75,16 +60,14 @@ const Footer = ({ darkMode }) => {
                 className="text-xl font-bold"
                 style={{ color: darkMode ? "#f8fafc" : "#1e293b" }}
               >
-                Diaa Elkhouly
+                {personalInfo.name}
               </span>
             </div>
             <p
               className="text-sm sm:text-base mb-6 max-w-md"
               style={{ color: darkMode ? "#94a3b8" : "#64748b" }}
             >
-              Front-End Developer specializing in building modern, responsive,
-              and interactive web applications with React.js and modern
-              technologies.
+              {personalInfo.description}
             </p>
 
             {/* Social Links */}
@@ -120,7 +103,7 @@ const Footer = ({ darkMode }) => {
               Quick Links
             </h4>
             <ul className="space-y-2.5">
-              {quickLinks.map((link, index) => (
+              {footerLinks.map((link, index) => (
                 <li key={index}>
                   <a
                     href={link.href}
@@ -146,9 +129,9 @@ const Footer = ({ darkMode }) => {
               className="space-y-2.5"
               style={{ color: darkMode ? "#94a3b8" : "#64748b" }}
             >
-              <li className="text-sm">diaaelkhouly8@gmail.com</li>
-              <li className="text-sm">+20 120 144 9924</li>
-              <li className="text-sm">Cairo, Egypt</li>
+              <li className="text-sm">{personalInfo.email}</li>
+              <li className="text-sm">{personalInfo.phone}</li>
+              <li className="text-sm">{personalInfo.location}</li>
             </ul>
           </div>
         </div>
@@ -167,7 +150,7 @@ const Footer = ({ darkMode }) => {
               className="text-xs sm:text-sm text-center sm:text-left"
               style={{ color: darkMode ? "#64748b" : "#94a3b8" }}
             >
-              © {currentYear} Diaa Elkhouly. All rights reserved.
+              © {currentYear} {personalInfo.name}. All rights reserved.
             </p>
             <p
               className="text-xs sm:text-sm flex items-center gap-1.5"

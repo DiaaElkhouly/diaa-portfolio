@@ -22,11 +22,43 @@ const useMousePosition = () => {
   return mousePosition;
 };
 
+// Get initial theme from localStorage
+const getInitialTheme = () => {
+  if (typeof window !== "undefined") {
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    if (savedTheme !== null) {
+      return savedTheme === "dark";
+    }
+  }
+  return true; // Default to dark mode
+};
+
 // Main App Component
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(getInitialTheme);
   const [activeSection, setActiveSection] = useState("home");
   const mousePosition = useMousePosition();
+
+  // Set initial theme on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("portfolio-theme");
+    const isDark = savedTheme !== null ? savedTheme === "dark" : true;
+    document.documentElement.setAttribute(
+      "data-theme",
+      isDark ? "dark" : "light",
+    );
+  }, []);
+
+  // Save theme preference and update document
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem("portfolio-theme", newMode ? "dark" : "light");
+    document.documentElement.setAttribute(
+      "data-theme",
+      newMode ? "dark" : "light",
+    );
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -48,19 +80,20 @@ function App() {
 
   return (
     <div
-      className={` min-h-screen ${darkMode ? "bg-gray-950" : "bg-gray-800"}`}
+      className="min-h-screen transition-colors duration-300"
+      style={{ backgroundColor: "var(--bg-primary)" }}
     >
       <Navigation
         darkMode={darkMode}
-        setDarkMode={setDarkMode}
+        setDarkMode={toggleDarkMode}
         activeSection={activeSection}
       />
-      <HeroSection mousePosition={mousePosition} />
-      <ProjectsSection />
-      <SkillsSection />
-      <AboutSection />
-      <ContactSection />
-      <Footer />
+      <HeroSection mousePosition={mousePosition} darkMode={darkMode} />
+      <ProjectsSection darkMode={darkMode} />
+      <SkillsSection darkMode={darkMode} />
+      <AboutSection darkMode={darkMode} />
+      <ContactSection darkMode={darkMode} />
+      <Footer darkMode={darkMode} />
 
       <style>{`
         @keyframes fade-in {
